@@ -8,14 +8,15 @@ Example usage:
 
 Author of this script and included expert policies: Jonathan Ho (hoj@openai.com)
 """
-
+import json
 import os
 import pickle
-import tensorflow as tf
+
 import numpy as np
-import tf_util
-import gym
-import load_policy
+import tensorflow as tf
+
+from hw1.utils import tf_util, load_policy
+
 
 def main():
     import argparse
@@ -49,7 +50,7 @@ def main():
             totalr = 0.
             steps = 0
             while not done:
-                action = policy_fn(obs[None,:])
+                action = policy_fn(obs[None, :])
                 observations.append(obs)
                 actions.append(action)
                 obs, r, done, _ = env.step(action)
@@ -57,20 +58,22 @@ def main():
                 steps += 1
                 if args.render:
                     env.render()
-                if steps % 100 == 0: print("%i/%i"%(steps, max_steps))
+                if steps % 100 == 0: print("%i/%i" % (steps, max_steps))
                 if steps >= max_steps:
                     break
             returns.append(totalr)
 
-        print('returns', returns)
-        print('mean return', np.mean(returns))
-        print('std of return', np.std(returns))
-
         expert_data = {'observations': np.array(observations),
                        'actions': np.array(actions)}
 
+        with open(os.path.join('expert_data', args.envname + '.json'), 'w') as f:
+            json.dump({'returns': returns,
+                       'mean_return': np.mean(returns),
+                       'std_return': np.std(returns)}, f)
+
         with open(os.path.join('expert_data', args.envname + '.pkl'), 'wb') as f:
             pickle.dump(expert_data, f, pickle.HIGHEST_PROTOCOL)
+
 
 if __name__ == '__main__':
     main()
