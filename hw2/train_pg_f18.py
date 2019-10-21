@@ -147,7 +147,7 @@ class Agent(object):
         else:
             # YOUR_CODE_HERE
             sy_mean = build_mlp(sy_ob_no, self.ac_dim, 'policy_nn', self.n_layers, self.size)
-            sy_logstd = tf.get_variable('logstd', shape=[self.ac_dim])
+            sy_logstd = tf.get_variable('sy_logstd', shape=[self.ac_dim])
             return sy_mean, sy_logstd
 
     #========================================================================================#
@@ -179,7 +179,7 @@ class Agent(object):
         """
         if self.discrete:
             sy_logits_na = policy_parameters
-            # YOUR_CODE_HERENoneNone
+            # YOUR_CODE_HERE
             sy_sampled_ac = tf.squeeze(tf.multinomial(sy_logits_na, 1), axis=1)
         else:
             sy_mean, sy_logstd = policy_parameters
@@ -480,8 +480,7 @@ class Agent(object):
         if self.normalize_advantages:
             # On the next line, implement a trick which is known empirically to reduce variance
             # in policy gradient methods: normalize adv_n to have mean zero and std=1.
-            # YOUR_CODE_HERE
-            adv_n = normalize(adv_n)
+            adv_n = normalize(adv_n)    # YOUR_CODE_HERE
         return q_n, adv_n
 
     def update_parameters(self, ob_no, ac_na, q_n, adv_n):

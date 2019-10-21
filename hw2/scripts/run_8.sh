@@ -7,7 +7,7 @@ for b in ${batch_sizes[*]}; do
   for r in ${learning_rates[*]}; do
 
     # Delete previous directory for the same experiment (if it exists)
-    rm -rf data/hc_rtg_nn_b$b\_r$r\_HalfCheetah-v2
+    rm -rf data/hc_rtg_nn_d0.9_b$b\_r$r\_HalfCheetah-v2
 
     # Run experiment
     python train_pg_f18.py HalfCheetah-v2 -ep 150 --discount 0.9 -n 100 -e 3 \
