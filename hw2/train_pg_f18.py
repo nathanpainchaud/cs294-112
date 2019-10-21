@@ -222,8 +222,10 @@ class Agent(object):
         else:
             sy_mean, sy_logstd = policy_parameters
             # YOUR_CODE_HERE
-            multivariate_gaussian = tf.distributions.Normal(loc=sy_mean, scale=tf.exp(sy_logstd))
+            multivariate_gaussian = tf.contrib.distributions.MultivariateNormalDiag(loc=sy_mean,
+                                                                                    scale_diag=tf.exp(sy_logstd))
             sy_logprob_n = multivariate_gaussian.log_prob(sy_ac_na)
+
         return sy_logprob_n
 
     def build_computation_graph(self):
