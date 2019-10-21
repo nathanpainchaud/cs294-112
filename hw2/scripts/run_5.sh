@@ -1,7 +1,12 @@
 #!/bin/bash
 
-batch_sizes=(500 1000 2000)
-learning_rates=(0.005 0.01 0.02)
+# Tested parameters
+#batch_sizes=(500 1000 2000)
+#learning_rates=(0.005 0.01 0.02)
+
+# Optimal parameters (with good convergence)
+batch_sizes=(2000)
+learning_rates=(0.005)
 
 for b in ${batch_sizes[*]}; do
   for r in ${learning_rates[*]}; do
