@@ -55,7 +55,6 @@ def plot_data(data, value="AverageReturn"):
     sns.set(style="darkgrid", font_scale=1.5)
     sns.tsplot(data=data, time="Iteration", value=value, unit="Unit", condition="Condition")
     plt.legend(loc='best').draggable()
-    plt.show()
 
 
 def get_datasets(fpath, condition=None):
@@ -93,6 +92,7 @@ def main():
     parser.add_argument('logdir', nargs='*')
     parser.add_argument('--legend', nargs='*')
     parser.add_argument('--value', default='AverageReturn', nargs='*')
+    parser.add_argument('--save_name', type=str, default='data')
     args = parser.parse_args()
 
     use_legend = False
@@ -115,6 +115,12 @@ def main():
         values = [args.value]
     for value in values:
         plot_data(data, value=value)
+    plt.savefig(
+        os.path.join('data', args.save_name + '.png'),
+        bbox_inches='tight',
+        transparent=True,
+        pad_inches=0.1
+    )
 
 if __name__ == "__main__":
     main()
