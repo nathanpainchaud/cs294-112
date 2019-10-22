@@ -17,4 +17,12 @@ for b in ${batch_sizes[*]}; do
     python plot.py data/hc_rtg_nn_d0.9_b$b\_r$r\_HalfCheetah-v2 --save_name hc_rtg_nn_d0.9_b$b\_r$r
 
   done
+
+  # Plot the results of the experiment
+  python plot.py \
+    data/hc_rtg_nn_d0.9_b$b\_r0.005_HalfCheetah-v2 \
+    data/hc_rtg_nn_d0.9_b$b\_r0.01_HalfCheetah-v2 \
+    data/hc_rtg_nn_d0.9_b$b\_r0.02_HalfCheetah-v2 \
+    --save_name hc_rtg_nn_d0.9_b$b
+
 done
