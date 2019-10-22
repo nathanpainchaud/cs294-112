@@ -26,4 +26,4 @@ python plot.py \
   data/hc_rtg_no_nn_b$b\_r$r\_HalfCheetah-v2 \
   data/hc_no_rtg_nn_b$b\_r$r\_HalfCheetah-v2 \
   data/hc_rtg_nn_b$b\_r$r\_HalfCheetah-v2 \
-  --save_name hc_d0.95_$b\_r$r
+  --save_name hc_d0.95_b$b\_r$r
