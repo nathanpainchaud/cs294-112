@@ -1,0 +1,23 @@
+name: cs294
+channels:
+  - defaults
+  - conda-forge
+  - kne
+dependencies:
+  - python=3.5
+  - pip
+  - colorlog
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - h5py
+  - tensorflow-gpu
+  - cudatoolkit=9.0
+  - tqdm
+  - pybox2d
+  - patchelf
+  - pip:
+    - gym==0.10.5
+    - mujoco-py==1.50.1.56
