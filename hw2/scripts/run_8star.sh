@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set optimal parameters found by `run_8.sh` script
-b=10000
+b=50000
 r=0.02
 
 # Delete previous directories for the same experiments (if they exist)
